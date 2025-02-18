@@ -1,4 +1,5 @@
 import image from '../assets/image.png'
+import { Link } from 'react-router-dom';
 
 const HomePage = () =>{
 
@@ -29,9 +30,9 @@ const HomePage = () =>{
                 <h1 className="text-4xl font-semibold mt-8">Select your Self</h1>
 
                 <div className="flex items-center h-full justify-center flex-col gap-8">
-                    <button className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">Student</button>
-                    <button className="bg-white ml-28 text-black text-3xl font-semibold rounded-full px-10 py-2">Teacher</button>
-                    <button className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">Faculty</button>
+                    <Link to={'/student'} className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">Student</Link>
+                    <Link to={'/'} className="bg-white ml-28 text-black text-3xl font-semibold rounded-full px-10 py-2">Teacher</Link>
+                    <Link to={'/'} className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">Faculty</Link>
                 </div>
 
             </section>
