@@ -1,10 +1,29 @@
 import image from '../assets/image.png'
 import { Link } from 'react-router-dom';
+import { gsap } from 'gsap'
+import { useEffect } from 'react';
 
 const HomePage = () =>{
 
+    // cursor function
+    useEffect(() => {
+        const cursor = document.querySelector('.cursor');
+  
+        const handleMouseMove = (event) => {
+          cursor.style.backgroundColor = 'black';
+          gsap.to(cursor, {
+            x: event.x,
+            y: event.y,
+          });
+        };
+  
+        document.addEventListener('mousemove', handleMouseMove);
+  
+      }, []);
+
     return(
         <div className="w-full ">
+            <div className='cursor w-8 h-8 rounded-full bg-transparent fixed top-2'></div>
             <section className="w-full h-screen bg-gray-100">
                 <header className="w-full h-14 px-8 py-4  flex items-center justify-center">
                     <nav className="w-full flex items-center justify-between">
@@ -30,9 +49,12 @@ const HomePage = () =>{
                 <h1 className="text-4xl font-semibold mt-8">Select your Self</h1>
 
                 <div className="flex items-center h-full justify-center flex-col gap-8">
-                    <Link to={'/student'} className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">Student</Link>
-                    <Link to={'/'} className="bg-white ml-28 text-black text-3xl font-semibold rounded-full px-10 py-2">Teacher</Link>
-                    <Link to={'/'} className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">Faculty</Link>
+                    <Link to={'/student'} className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">
+                        Student</Link>
+                    <Link to={'/teacher'} className="bg-white ml-28 text-black text-3xl font-semibold rounded-full px-10 py-2">
+                        Teacher</Link>
+                    <Link to={'/faculty'} className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">
+                        Faculty</Link>
                 </div>
 
             </section>

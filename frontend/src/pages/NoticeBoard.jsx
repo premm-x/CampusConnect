@@ -1,7 +1,8 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/sidebars/Sidebar';
 
 import StudentNavbar from '../components/StudentNavbar';
+import StudentNoticePage from '../components/StudentNoticePage';
 
 const NoticeBoard = () => {
     return (
@@ -11,7 +12,7 @@ const NoticeBoard = () => {
             <div className=' w-full h-[91vh] flex'>
                 <Sidebar/>
                 <div className=' w-[80%] flex items-center justify-center'>
-                    <h1>This is Notice Board</h1>
+                    <StudentNoticePage/>
                 </div>
             </div>
         </div>

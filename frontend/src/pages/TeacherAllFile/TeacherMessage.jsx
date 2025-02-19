@@ -3,7 +3,7 @@ import { MessageCircle, Send, HelpCircle, User, Search } from 'lucide-react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-function Message() {
+function TeacherMessage() {
   const [users] = useState([
     {
       id: 1,
@@ -301,4 +301,4 @@ function Message() {
   );
 }
 
-export default Message;
+export default TeacherMessage;

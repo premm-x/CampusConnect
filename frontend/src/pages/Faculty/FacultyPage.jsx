@@ -1,16 +1,16 @@
 import React from 'react';
-import Sidebar from '../components/sidebars/Sidebar';
 
-import StudentNavbar from '../components/StudentNavbar';
+import StudentNavbar from '../../components/StudentNavbar';
+import FacultySidebar from '../../components/sidebars/FacultySidebar';
 
 
-const StudentPage = () => {
+const FacultyPage = () => {
     return (
         <div className='w-full'>
            <StudentNavbar/>
 
             <div className=' w-full h-[91vh] flex'>
-                <Sidebar/>
+                <FacultySidebar/>
                 <div className='w-[80%] flex items-center justify-center'>
                    <h1>Please select any option to use</h1>
                 </div>
@@ -19,4 +19,4 @@ const StudentPage = () => {
     );
 };
 
-export default StudentPage;
+export default FacultyPage;
