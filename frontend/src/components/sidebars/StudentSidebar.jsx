@@ -17,6 +17,9 @@ const Sidebar = () => {
             <Link to={'/student/message'} className='border-b-[1px] bg-orange-300 hover:bg-gray-200 rounded-sm text-xl border-gray-300 w-[90%] h-12 flex items-center justify-center'>
             Message </Link>
 
+            <Link to={'/student/groupmessage'} className='border-b-[1px] hover:bg-gray-200 rounded-sm text-xl border-gray-300 w-[90%] h-12 flex items-center justify-center'>
+            Group Message </Link>
+
         </div>
     );
 };

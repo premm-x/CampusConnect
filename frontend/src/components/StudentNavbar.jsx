@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import user from '../assets/user.png';
 
 const StudentNavbar = () => {
     return (
@@ -10,6 +11,9 @@ const StudentNavbar = () => {
                     <a href="" className="hover:underline">Chat</a>
                     <Link to={'/'} className="hover:underline">Dashboard</Link>
                     <a href="" className="hover:underline">Notice</a>
+                    <Link to={'/student/id'} className="border-4 border-gray-500 rounded-full hover:border-gray-800">
+                        <img className='w-9' src={user}  />
+                    </Link>
                 </div>
             </nav>
         </header>

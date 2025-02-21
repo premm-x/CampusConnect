@@ -1,5 +1,5 @@
 import React from 'react';
-import StudentNavbar from '../components/StudentNavbar';
+import StudentNavbar from '../../components/StudentNavbar';
 import { Link } from 'react-router-dom';
 
 const ProjectPartner = () => {

@@ -3,23 +3,29 @@ import { Routes, Route } from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
 
-import StudentPage from './pages/StudentPage';
-import NoticeBoard from './pages/NoticeBoard';
-import EventCalendar from './pages/EventCalender';
-import Message from './pages/Message';
-import ProjectPartner from './pages/ProjectPartner';
+import StudentPage from './pages/student/StudentPage';
+import NoticeBoard from './pages/student/NoticeBoard';
+import EventCalendar from './pages/student/EventCalender';
+import Message from './pages/student/Message';
+import GroupMessage from './pages/student/GroupMessage';
+import ProjectPartner from './pages/student/ProjectPartner';
 
 import CreateProject from './pages/projectEvents/CreateProject';
 import ViewProject from './pages/projectEvents/ViewProject';
 
-import TeacherNoticePage from './components/TeacherNoticePage';
+import TeacherNoticePage from './pages/TeacherAllFile/TeacherNoticePage';
 import TeacherPage from './pages/TeacherAllFile/TeacherPage';
 import TeacherEvent from './pages/TeacherAllFile/TeacherEvent';
 import TeacherMessage from './pages/TeacherAllFile/TeacherMessage';
 
-import FacultyPage from './pages/Faculty/FacultyPage';
-import FacultyAddTeacher from './pages/Faculty/FacultyAddTeacher';
-import FacultyAddStudent from './pages/Faculty/FacultyAddStudent';
+import AdminPage from './pages/Admin/AdminPage';
+import AdminAddStudent from './pages/Admin/AdminAddStudent';
+import AdminViewStudent from './pages/Admin/AdminViewStudent';
+import AdminAddTeacher from './pages/Admin/AdminAddTeacher';
+
+import Idpanel from './pages/student/Idpanel';
+import AdminViewTeacher from './pages/Admin/AdminViewTeacher';
+import StudentLogin from './pages/student/StudentLogin';
 
 function App() {  
 
@@ -27,10 +33,12 @@ function App() {
 
     <Routes>
       <Route path='/' element={ <HomePage/> } />
-      <Route path='/student' element={ <StudentPage/> } />
+      <Route path='/student' element={ <StudentLogin/> } />
+      <Route path='/student/id' element={ <Idpanel/> } />
       <Route path='/student/notice' element={ <NoticeBoard/> } />
       <Route path='/student/event' element={ <EventCalendar/> } />
       <Route path='/student/message' element={ <Message/> } />
+      <Route path='/student/groupmessage' element={ <GroupMessage/> } />
       <Route path='/student/projectpartner' element={ <ProjectPartner/> } />
       <Route path='/student/projectpartner/viewproject' element={ <ViewProject/> } />
       <Route path='/student/projectpartner/creatingproject' element={ <CreateProject/> } />
@@ -40,9 +48,11 @@ function App() {
       <Route path='/teacher/event' element={ <TeacherEvent/> } />
       <Route path='/teacher/message' element={ <TeacherMessage/> } />
 
-      <Route path='/faculty' element={ <FacultyPage/> } />
-      <Route path='/faculty/addstudent' element={ <FacultyAddStudent/> } />
-      <Route path='/faculty/addteacher' element={ <FacultyAddTeacher/> } />
+      <Route path='/admin' element={ <AdminPage/> } />
+      <Route path='/admin/addstudent' element={ <AdminAddStudent/> } />
+      <Route path='/admin/addstudent/view' element={ <AdminViewStudent/> } />
+      <Route path='/admin/addteacher' element={ <AdminAddTeacher/> } />
+      <Route path='/admin/addteacher/view' element={ <AdminViewTeacher/> } />
 
     </Routes>
 
