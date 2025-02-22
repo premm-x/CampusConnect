@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axiosInstance from '../config/axios';
 // import { PaperClipIcon } from '@heroicons/react/24/outline';
 
 function StudentPage() {
-  const [notices, setNotices] = useState(() => {
-    const savedNotices = localStorage.getItem('notices');
-    return savedNotices ? JSON.parse(savedNotices) : [];
-  });
+  const [notices, setNotices] = useState([]);
+
+  useEffect(() => {
+    const fetchNotices = async () => {
+      try {
+        const response = await axiosInstance.get("/notice");
+        setNotices(response.data);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
+  
+    fetchNotices();
+  }, []);
 
   return (
     <div className="max-w-4xl h-full mx-auto">
@@ -16,11 +27,11 @@ function StudentPage() {
         ) : (
           notices.map((notice) => (
             <div
-              key={notice.id}
-              className="bg-[#e9e9e9] rounded-lg p-6 shadow-lg"
+              key={notice._id}
+              className="bg-[#e9e9e9] rounded-lg p-6  shadow-lg"
             >
               <h3 className="text-xl font-semibold mb-2">{notice.title}</h3>
-              <p className="text-gray-800 mb-4">{notice.content}</p>
+              <p className="text-gray-800 mb-4 ">{notice.content}</p>
               {notice.attachment && (
                 <div className="mb-4">
                   {notice.attachment.type.startsWith('image/') ? (

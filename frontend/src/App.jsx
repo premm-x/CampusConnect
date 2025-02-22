@@ -33,7 +33,8 @@ function App() {
 
     <Routes>
       <Route path='/' element={ <HomePage/> } />
-      <Route path='/student' element={ <StudentLogin/> } />
+      <Route path='/student' element={ <StudentPage/> } />
+      <Route path='/student/login' element={ <StudentLogin/> } />
       <Route path='/student/id' element={ <Idpanel/> } />
       <Route path='/student/notice' element={ <NoticeBoard/> } />
       <Route path='/student/event' element={ <EventCalendar/> } />

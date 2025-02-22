@@ -3,9 +3,9 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import DbConnection from './database/db.js';
-import studentModel from './models/AddStudent.models.js';
 
-import studentRouter from './routes/Students.routes.js';
+import studentRoutes from './routes/Students.routes.js';
+import noticeRoutes from './routes/Notice.routes.js';
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.get('/', (req, res)=>{
     res.send("Hello");
 })
 
-app.use('/student', studentRouter);
+app.use('/student', studentRoutes);
+app.use("/notice", noticeRoutes);
 
 export default app;

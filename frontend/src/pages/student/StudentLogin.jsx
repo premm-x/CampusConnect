@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import axiosInstance from '../../config/axios';
+import { StudentContext } from "../../context/student.context";
+import { useNavigate } from 'react-router-dom';
 
 const StudentLogin = () => {
+    const navigate = useNavigate();
+
     const [studentName, setStudentName] = useState("");
     const [studentNumber, setStudentNumber] = useState("");
     const [studentClass, setStudentClass] = useState("");
 
-    const handleSubmit = (e) => {
+    const { setStudentData } = useContext(StudentContext);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (studentNumber.length !== 10 || isNaN(studentNumber)) {
@@ -14,10 +21,23 @@ const StudentLogin = () => {
             return;
         }
 
-        toast.success("Login successful!");
         
-        // Add backend API call here
-        console.log("Student Login:", { studentName, studentNumber, studentClass });
+        // calling backend 
+
+        axiosInstance.post('/student/login',{
+            studentName, studentNumber, studentClass
+        }).then((res)=>{
+            toast.success("Login successful!");
+
+            setStudentData(res.data.student);
+
+            navigate('/student');
+
+        }).catch((err)=>{
+            toast.error("Student not found!");
+            console.log(err);
+        })
+            
     };
 
     return (

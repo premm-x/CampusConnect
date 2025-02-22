@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Pencil, Trash, Paperclip } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
+import axiosInstance from '../../config/axios';
 
 function TeacherPage() {
-  const [notices, setNotices] = useState(() => {
-    const savedNotices = localStorage.getItem('notices');
-    return savedNotices ? JSON.parse(savedNotices) : [];
-  });
+  const [notices, setNotices] = useState([]);
 
   const [editingNotice, setEditingNotice] = useState(null);
   
@@ -18,8 +15,17 @@ function TeacherPage() {
   });
 
   useEffect(() => {
-    localStorage.setItem('notices', JSON.stringify(notices));
-  }, [notices]);
+    const fetchNotices = async () => {
+      try {
+        const response = await axiosInstance.get("/notice");
+        setNotices(response.data);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
+  
+    fetchNotices();
+  }, []);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -39,16 +45,22 @@ function TeacherPage() {
     }
   };
 
-  const handleAddNotice = (e) => {
+  // add notice
+  const handleAddNotice = async (e) => {
     e.preventDefault();
     if (newNotice.title.trim() && newNotice.content.trim()) {
-      const notice = {
-        id: Date.now(),
-        ...newNotice,
-        date: new Date().toISOString(),
-      };
-      setNotices([notice, ...notices]);
-      setNewNotice({ title: '', content: '', attachment: null });
+      try {
+        const response = await axiosInstance.post("/notice", {
+          title: newNotice.title,
+          content: newNotice.content,
+          attachment: newNotice.attachment || null, // Ensure it's sent as null if empty
+        });
+  
+        setNotices([response.data, ...notices]);
+        setNewNotice({ title: "", content: "", attachment: null });
+      } catch (error) {
+        console.error("Error adding notice:", error.response?.data || error);
+      }
     }
   };
 
@@ -61,32 +73,41 @@ function TeacherPage() {
     });
   };
 
-  const handleUpdateNotice = (e) => {
+  const handleUpdateNotice = async (e) => {
     e.preventDefault();
     if (newNotice.title.trim() && newNotice.content.trim()) {
-      setNotices(
-        notices.map((notice) =>
-          notice.id === editingNotice.id
-            ? {
-                ...notice,
-                title: newNotice.title,
-                content: newNotice.content,
-                attachment: newNotice.attachment,
-                date: new Date().toISOString(),
-              }
-            : notice
-        )
-      );
-      setEditingNotice(null);
-      setNewNotice({ title: '', content: '', attachment: null });
+      try {
+        const response = await axiosInstance.put(`/notice/${editingNotice._id}`, {
+          title: newNotice.title,
+          content: newNotice.content,
+          attachment: newNotice.attachment,
+        });
+  
+        setNotices(
+          notices.map((notice) =>
+            notice._id === editingNotice._id ? response.data : notice
+          )
+        );
+        setEditingNotice(null);
+        setNewNotice({ title: "", content: "", attachment: null });
+      } catch (error) {
+        console.error("Error updating notice:", error.response?.data || error);
+      }
     }
   };
+  
 
-  const handleDeleteNotice = (id) => {
-    if (window.confirm('Are you sure you want to delete this notice?')) {
-      setNotices(notices.filter((notice) => notice.id !== id));
+  const handleDeleteNotice = async (id) => {
+    if (window.confirm("Are you sure you want to delete this notice?")) {
+      try {
+        await axiosInstance.delete(`/notice/${id}`);
+        setNotices(notices.filter((notice) => notice._id !== id));
+      } catch (error) {
+        console.error("Error deleting notice:", error.response?.data || error);
+      }
     }
   };
+  
 
   const handleRemoveAttachment = () => {
     setNewNotice({ ...newNotice, attachment: null });
@@ -194,7 +215,7 @@ function TeacherPage() {
           ) : (
             notices.map((notice) => (
               <div
-                key={notice.id}
+                key={notice._id}
                 className="bg-[#d6d8db]  rounded-lg p-6 shadow-lg"
               >
                 <div className="flex justify-between items-start mb-4">
@@ -207,7 +228,7 @@ function TeacherPage() {
                       <Pencil className="w-5 h-5" />
                     </button>
                     <button
-                      onClick={() => handleDeleteNotice(notice.id)}
+                      onClick={() => handleDeleteNotice(notice._id)}
                       className="p-2 hover:bg-gray-700 rounded-md transition-colors text-red-400"
                     >
                       <Trash className="w-5 h-5" />

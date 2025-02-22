@@ -50,7 +50,7 @@ const HomePage = () =>{
                 <h1 className="text-4xl font-semibold mt-8">Select your Self</h1>
 
                 <div className="flex items-center h-full justify-center flex-col gap-8">
-                    <Link to={'/student'} className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">
+                    <Link to={'/student/login'} className="bg-black mr-28 text-white text-3xl font-semibold rounded-full px-10 py-2">
                         Student</Link>
                     <Link to={'/teacher'} className="bg-white ml-28 text-black text-3xl font-semibold rounded-full px-10 py-2">
                         Teacher</Link>

@@ -21,7 +21,7 @@ router.post("/login", async (req, res) => {
             return res.status(404).json({ message: "Student not found" });
         }
 
-        res.json({ message: "Login successful", student });
+        res.status(200).json({ message: "Login successful", student });
 
     } catch (error) {
         res.status(500).json({ message: "Server error", error });
@@ -47,7 +47,6 @@ router.post("/addstudent", async (req, res) => {
         res.status(500).json({ message: "Server error", error });
     }
 });
-
 
 router.get('/getStudent', async (req, res) =>{
     const student = await studentModel.find({});
