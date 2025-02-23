@@ -209,6 +209,7 @@ function TeacherPage() {
           </div>
         </form>
 
+            {/* displaying notices */}
         <div className="space-y-4">
           {notices.length === 0 ? (
             <p className="text-gray-900 text-center py-8">No notices available</p>
@@ -263,6 +264,7 @@ function TeacherPage() {
             ))
           )}
         </div>
+
       </div>
     </div>
   );

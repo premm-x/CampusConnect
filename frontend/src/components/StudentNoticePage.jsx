@@ -19,7 +19,7 @@ function StudentPage() {
   }, []);
 
   return (
-    <div className="max-w-4xl h-full mx-auto">
+    <div className="max-w-4xl  h-full mx-auto">
       <h2 className="text-2xl text-center font-semibold mt-2 mb-2">Student Notice Board</h2>
       <div className="space-y-4 p-8 overflow-y-auto">
         {notices.length === 0 ? (

@@ -8,7 +8,6 @@ import NoticeBoard from './pages/student/NoticeBoard';
 import EventCalendar from './pages/student/EventCalender';
 import Message from './pages/student/Message';
 import GroupMessage from './pages/student/GroupMessage';
-import ProjectPartner from './pages/student/ProjectPartner';
 
 import CreateProject from './pages/projectEvents/CreateProject';
 import ViewProject from './pages/projectEvents/ViewProject';
@@ -40,7 +39,6 @@ function App() {
       <Route path='/student/event' element={ <EventCalendar/> } />
       <Route path='/student/message' element={ <Message/> } />
       <Route path='/student/groupmessage' element={ <GroupMessage/> } />
-      <Route path='/student/projectpartner' element={ <ProjectPartner/> } />
       <Route path='/student/projectpartner/viewproject' element={ <ViewProject/> } />
       <Route path='/student/projectpartner/creatingproject' element={ <CreateProject/> } />
 

@@ -9,9 +9,9 @@ const NoticeBoard = () => {
         <div className='w-full'>
            <StudentNavbar/>
 
-            <div className=' w-full h-[91vh] flex'>
+            <div className=' w-full h-[92vh]  flex'>
                 <StudentSidebar/>
-                <div className=' w-[80%] flex items-center justify-center'>
+                <div className='overflow-y-scroll w-[80%] bg-slate-300 h-full flex items-center justify-center'>
                     <StudentNoticePage/>
                 </div>
             </div>

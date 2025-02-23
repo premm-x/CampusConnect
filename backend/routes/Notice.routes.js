@@ -45,11 +45,11 @@ router.put("/:id", async (req, res) => {
       }
   
       res.json(updatedNotice);
+      
     } catch (error) {
       res.status(500).json({ error: "Internal Server Error" });
     }
 });
-  
 
 router.delete("/:id", async (req, res) => {
     try {
